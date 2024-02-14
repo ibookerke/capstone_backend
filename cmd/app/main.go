@@ -1,7 +1,9 @@
 package main
 
 import (
+	"log/slog"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +20,14 @@ import (
 //	@in							header
 //	@name						Authorization
 func main() {
+	slogHandler := slog.Handler(slog.NewTextHandler(os.Stdout, nil))
+	if !conf.Project.Debug {
+		slogHandler = slog.NewJSONHandler(os.Stdout, nil)
+	}
+	logger := slog.New(slogHandler).With("svc", conf.Project.ServiceName)
+
+	logger.Info("Starting the application")
+	
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{

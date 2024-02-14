@@ -5,8 +5,8 @@ import (
 
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	"github.com/ibookerkecapstone_backend/docs"
-	"github.com/ibookerkecapstone_backend/internal/config"
+	"github.com/ibookerke/capstone_backend/docs"
+	"github.com/ibookerke/capstone_backend/internal/config"
 )
 
 type SwaggerHandler struct {
