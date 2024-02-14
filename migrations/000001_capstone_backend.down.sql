@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS product.financials;
+DROP TABLE IF EXISTS product.inbox;
+DROP TABLE IF EXISTS product.outbox;
+DROP TABLE IF EXISTS product.investment_opportunities;
+DROP TABLE IF EXISTS product.property_images;
+DROP TABLE IF EXISTS product.property_amenities;
+DROP TABLE IF EXISTS product.amenities;
+DROP TABLE IF EXISTS product.properties;
+DROP TABLE IF EXISTS product.property_subtypes;
+DROP TABLE IF EXISTS product.property_types;

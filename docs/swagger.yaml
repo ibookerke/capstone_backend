@@ -1,0 +1,199 @@
+definitions:
+  domain.Amenity:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  domain.InvestmentOpportunity:
+    properties:
+      id:
+        type: integer
+      isActive:
+        type: boolean
+      pricePerShare:
+        type: number
+      propertyId:
+        type: integer
+      sharesAmount:
+        type: integer
+      type:
+        $ref: '#/definitions/domain.InvestmentOpportunityType'
+    type: object
+  domain.InvestmentOpportunityType:
+    enum:
+    - 0
+    - 1
+    - 2
+    type: integer
+    x-enum-varnames:
+    - Unknown
+    - Flip
+    - Hold
+  domain.PropertyImage:
+    properties:
+      id:
+        type: integer
+      image:
+        type: string
+      isMain:
+        type: boolean
+      propertyId:
+        type: integer
+    type: object
+  domain.PropertySubtype:
+    properties:
+      id:
+        type: integer
+      propertyTypeId:
+        type: integer
+      subtype:
+        type: string
+    type: object
+  domain.PropertyType:
+    properties:
+      id:
+        type: integer
+      type:
+        type: string
+    type: object
+  http.getInvestmentOpportunitiesResponse:
+    properties:
+      investmentOpportunities:
+        items:
+          $ref: '#/definitions/domain.InvestmentOpportunity'
+        type: array
+    type: object
+  http.metadataResponse:
+    properties:
+      amenities:
+        items:
+          $ref: '#/definitions/domain.Amenity'
+        type: array
+      propertySubtypes:
+        items:
+          $ref: '#/definitions/domain.PropertySubtype'
+        type: array
+      propertyTypes:
+        items:
+          $ref: '#/definitions/domain.PropertyType'
+        type: array
+    type: object
+  http.registerInvestmentOpportunityRequest:
+    properties:
+      amenities:
+        items:
+          type: integer
+        type: array
+      area:
+        type: number
+      baths:
+        type: integer
+      beds:
+        type: integer
+      description:
+        type: string
+      furnishingStatus:
+        type: integer
+      images:
+        items:
+          $ref: '#/definitions/domain.PropertyImage'
+        type: array
+      investmentOpportunityType:
+        type: integer
+      latLang:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+      pricePerShare:
+        type: number
+      propertySubtype:
+        type: integer
+      rooms:
+        type: integer
+      sharesAmount:
+        type: integer
+    type: object
+  http.registerInvestmentOpportunityResponse:
+    properties:
+      investmentOpportunity:
+        $ref: '#/definitions/domain.InvestmentOpportunity'
+    type: object
+info:
+  contact:
+    email: contact@apartchain.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is swagger documentation for Product API
+  termsOfService: http://swagger.io/terms/
+  title: Product API [propshare]
+  version: "1.0"
+paths:
+  /api/product.v1/investment_opportunity:
+    get:
+      consumes:
+      - application/json
+      description: returns investment opportunities
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.getInvestmentOpportunitiesResponse'
+      security:
+      - Bearer: []
+      summary: returns investment opportunities
+      tags:
+      - investment opportunity
+    post:
+      consumes:
+      - application/json
+      description: |-
+        registers investment opportunity
+        Registers investment opportunity
+      parameters:
+      - description: investment opportunity register input body
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/http.registerInvestmentOpportunityRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.registerInvestmentOpportunityResponse'
+      security:
+      - Bearer: []
+      summary: registers investment opportunity
+      tags:
+      - investment opportunity
+  /api/product.v1/metadata:
+    get:
+      consumes:
+      - application/json
+      description: returns metadata for property
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.metadataResponse'
+      security:
+      - Bearer: []
+      summary: returns metadata for property
+      tags:
+      - metadata
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
