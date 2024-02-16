@@ -1,10 +1,5 @@
-DROP TABLE IF EXISTS product.financials;
-DROP TABLE IF EXISTS product.inbox;
-DROP TABLE IF EXISTS product.outbox;
-DROP TABLE IF EXISTS product.investment_opportunities;
-DROP TABLE IF EXISTS product.property_images;
-DROP TABLE IF EXISTS product.property_amenities;
-DROP TABLE IF EXISTS product.amenities;
-DROP TABLE IF EXISTS product.properties;
-DROP TABLE IF EXISTS product.property_subtypes;
-DROP TABLE IF EXISTS product.property_types;
+DROP TABLE IF EXISTS har.user_notification_settings;
+DROP TABLE IF EXISTS har.notifications;
+DROP TABLE IF EXISTS har.user_cameras;
+DROP TABLE IF EXISTS har.cameras;
+DROP TABLE IF EXISTS har.users;

@@ -1,3 +1,4 @@
 mount/db/*
 internal/config/env.go
 .env
+./.idea/*

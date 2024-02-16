@@ -3,6 +3,8 @@ package pgx
 import (
 	"context"
 
+	"github.com/jackc/pgx/v5"
+
 	"github.com/ibookerke/capstone_backend/internal/pkg/trm"
 	trmcontext "github.com/ibookerke/capstone_backend/internal/pkg/trm/context"
 )
